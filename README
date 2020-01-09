@@ -1,0 +1,11 @@
+Teoball
+
+Pygame bouncing ball example with ball sprite and bounce sound.
+
+The sprite and sound loading functions are taken from the chimp.py
+example that comes with pygame.
+
+ https://www.pygame.org/docs/tut/chimp.py.html
+
+Purpose of this example is to demonstrate how to get a sprite on
+screen and play a sound with pygame.
