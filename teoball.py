@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
-import pygame
+import pygame_sdl2
+pygame_sdl2.import_as_pygame()
+
 # game_common.py in the same directory
 from game_common import *
 
@@ -40,6 +42,7 @@ class Teoball(pygame.sprite.Sprite):
         if bounce:
             bounce_sound.play()
 
+TARGET_FPS = 120
 size = width, height = 640, 480
 black = (0, 0, 0)
 pygame.init()
@@ -53,6 +56,7 @@ bounce_sound = load_sound('punch.wav')
 allsprites = pygame.sprite.RenderPlain((ball,))
 
 # Main loop
+clock.tick()
 running = True
 while running:
 
@@ -70,7 +74,7 @@ while running:
     screen.blit(background, (0, 0))
     allsprites.draw(screen)
     pygame.display.flip()
-    clock.tick()
+    clock.tick(TARGET_FPS)
 
 print('bye, average fps:', int(clock.get_fps()), 'frames per second')
 pygame.quit()

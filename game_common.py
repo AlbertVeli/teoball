@@ -1,9 +1,9 @@
 # Some helper functions, mainly
 # from the chimp.py example
 
-import pygame
-from pygame.locals import *
-from pygame.compat import geterror
+import pygame_sdl2 as pygame
+from pygame_sdl2.locals import *
+from pygame_sdl2.compat import geterror
 import os
 
 # Local globals
