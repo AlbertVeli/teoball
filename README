@@ -1,8 +1,10 @@
 Teoball
+=======
 
-Bouncing ball example using pygame_sdl2.
-Change pygame_sdl2 to pygame at the top of the two files
-to use the old pygame (sdl1.2).
+Basic bouncing ball example using pygame_sdl2.
+Change pygame_sdl2 to pygame at the top of the two python
+files to use the old pygame (that uses SDL-1.2). The reason
+I switched to pygame_sdl2 is that it worked better with OSX.
 
 The sprite and sound loading functions are taken from the chimp.py
 example that comes with pygame.
@@ -15,3 +17,16 @@ screen and play a sound with pygame.
 Drop any mp3 into the resources directory and name it bgmusic.mp3
 to play background music. Note, SDL2_mixer must have mp3 support
 for this to work.
+
+Install
+=======
+
+First install libsdl2, sdl2-mixer (with mp3-support), sdl2-image
+and sdl2-ttf with your package manager of choice. Then:
+
+git clone https://github.com/renpy/pygame_sdl2.git
+cd pygame_sdl2
+python3 setup.py build
+python3 setup.py install --user
+
+If using OSX and brew, skip --user.

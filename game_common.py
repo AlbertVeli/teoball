@@ -44,9 +44,14 @@ def load_sound(name):
 
 def load_music(name):
     fullname = os.path.join(resources_dir, name)
+    if not os.path.isfile(fullname):
+        print('Drop an mp3 to %s for background music' % fullname)
+        return False
     try:
         pygame.mixer.music.load(fullname)
-    except pygame.error:
-        print("Cannot load music: %s" % fullname)
-        print(str(geterror()))
+    except:
+        print('Cannot load music: %s' % fullname)
+        print(geterror())
         #raise SystemExit(str(geterror()))
+        return False
+    return True

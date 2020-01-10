@@ -53,12 +53,11 @@ background = background.convert()
 background.fill(black)
 ball = Teoball()
 bounce_sound = load_sound('punch.wav')
-load_music('bgmusic.mp3')
-pygame.mixer.music.play(-1)
+if load_music('bgmusic.mp3'):
+    pygame.mixer.music.play(-1)
 allsprites = pygame.sprite.RenderPlain((ball,))
 
 # Main loop
-clock.tick()
 running = True
 while running:
 
