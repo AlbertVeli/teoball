@@ -18,11 +18,23 @@ Drop any mp3 into the resources directory and name it bgmusic.mp3
 to play background music. Note, SDL2_mixer must have mp3 support
 for this to work.
 
-Install
-=======
+Install prerequisites
+=====================
 
 First install libsdl2, sdl2-mixer (with mp3-support), sdl2-image
-and sdl2-ttf with your package manager of choice. Then:
+and sdl2-ttf with your package manager of choice.
+
+gentoo:
+
+ emerge -av libsdl2 sdl2-image sdl2-mixer sdl2-ttf
+
+(Make sure sdl2-mixer has the mp3 USE flag enabled)
+
+Debian/Ubuntu:
+
+ apt install libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev
+
+Then:
 
 git clone https://github.com/renpy/pygame_sdl2.git
 cd pygame_sdl2
@@ -30,3 +42,13 @@ python3 setup.py build
 python3 setup.py install --user
 
 If using OSX and brew, skip --user.
+
+If you want to use pybox2d, install it exactly the same as way as
+pygame_sdl2 but with this repo:
+
+ https://github.com/pybox2d/pybox2d.git
+
+As of this writing the pips for pygame_sdl2/pybox2d are not up to date
+(swig problem). This might get fixed in the future, then you can use pip
+instead.
+
