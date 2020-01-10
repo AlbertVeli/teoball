@@ -9,23 +9,22 @@ from game_common import *
 class Teoball(pygame.sprite.Sprite):
     '''Standard ball example'''
 
-    def __init__(self):
+    def __init__(self, pos = [0.0, 0.0], speed = [0.2, 0.2]):
         pygame.sprite.Sprite.__init__(self)  # call Sprite initializer
         self.image, self.rect = load_image('intro_ball.png', -1)
         self.w = self.rect.width
         self.h = self.rect.height
-        # Keep speed and pos as floats, upper left corner
-        self.speed = [0.395, 0.333]
-        self.pos = [0.0, 0.0]
+        # speed/pos = floats, pos = topleft corner
+        self.speed = list(speed)
+        self.pos = list(pos)
 
     # ticks = milliseconds since last frame
     def update(self, ticks):
         '''move ball and calculate bounces'''
         self.pos[0] += self.speed[0] * ticks
         self.pos[1] += self.speed[1] * ticks
-        self.rect.left = int(self.pos[0])
-        self.rect.top = int(self.pos[1])
-        self.rect.move_ip(self.speed[0], self.speed[1])
+        self.rect.topleft = self.pos
+        # Collission detection
         bounce = False
         if self.pos[0] < 0:
             bounce = True
@@ -42,8 +41,9 @@ class Teoball(pygame.sprite.Sprite):
         if bounce:
             bounce_sound.play()
 
+# Init
 TARGET_FPS = 120
-size = width, height = 640, 480
+size = width, height = 800, 600
 black = (0, 0, 0)
 pygame.init()
 screen = pygame.display.set_mode(size)
@@ -51,11 +51,11 @@ clock = pygame.time.Clock()
 background = pygame.Surface(screen.get_size())
 background = background.convert()
 background.fill(black)
-ball = Teoball()
+ball = Teoball(pos = (50, 50), speed = (0.395, 0.333))
 bounce_sound = load_sound('punch.wav')
 if load_music('bgmusic.mp3'):
     pygame.mixer.music.play(-1)
-allsprites = pygame.sprite.RenderPlain((ball,))
+allsprites = pygame.sprite.Group((ball,))
 
 # Main loop
 running = True
